@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="script/cart.js"></script>
+    <link href="css/footer.css" rel="stylesheet">
+    <title>Koszyk</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="img/lewy-twix.png" style="height: 30px" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Strona główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sklep.html">Sklep</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kontakt.html">Kontakt</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0 d-flex">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="koszyk.html">Koszyk (<span id="cart-value">0.00 zł</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Page content -->
+    <div class="container mt-5 mb-5">
+        <h1>Koszyk</h1>
+        <h5 class="mb-5">Przejrzyj i zapłać!</h5>
+        <div id="cart">
+
+        </div>
+
+        <h2 id="totalPrice">Suma: 0 PLN</h2>
+        <form class="col-sm-12 col-md-6 needs-validation" id="dane" onsubmit="return false;" novalidate>
+            <div class="mb-3">
+                <label for="imie" class="form-label">Imię</label>
+                <input type="text" class="form-control" id="imie" required>
+                <div class="invalid-feedback">
+                    Wprowadź imię!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="nazwisko" class="form-label">Nazwisko</label>
+                <input type="text" class="form-control" id="nazwisko" required>
+                <div class="invalid-feedback">
+                    Wprowadź nazwisko!
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="plec" id="mezczyzna" value="Mężczyzna" required>
+                <label class="form-check-label" for="mezczyzna">
+                    Mężczyzna
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="plec" id="kobieta" value="Kobieta" required>
+                <label class="form-check-label" for="kobieta">
+                    Kobieta
+                </label>
+                <div class="invalid-feedback">
+                    Wybierz płeć!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Adres e-mail</label>
+                <input type="email" class="form-control" placeholder="nazwa@domena.com" id="email" required>
+                <div class="invalid-feedback">
+                    Wprowadź prawidłowy adres e-mail!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="miejscowosc" class="form-label">Miejscowosc</label>
+                <input type="text" class="form-control" id="miejscowosc" required>
+                <div class="invalid-feedback">
+                    Wprowadź nazwę miejscowości!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="ulica" class="form-label">Ulica</label>
+                <input type="text" class="form-control" id="ulica" required>
+                <div class="invalid-feedback">
+                    Wprowadź ulicę!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="nrBud" class="form-label">Numer Budynku/lokalu</label>
+                <input type="text" class="form-control" id="nrBud" placeholder="14/21" pattern="^\S+$" required>
+                <div class="invalid-feedback">
+                    Wprowadź numer budynku!
+                </div>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="regulamin" required>
+                <label class="form-check-label" for="regulamin">Przeczytałem i zapoznałem się z regulaminem</label>
+                <div class="invalid-feedback">
+                    Musisz zaakceptować regulamin!
+                </div>
+            </div>
+            <button id="submit" type="submit" class="btn btn-primary">Zamów</button>
+        </form>
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function() {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                    .forEach(function(form) {
+                        form.addEventListener('submit', function(event) {
+                            if (!form.checkValidity()) {
+                                event.preventDefault()
+                                event.stopPropagation()
+                            } else {
+                                zapiszDane();
+                                spoofSubmit();
+                            }
+
+
+                            form.classList.add('was-validated')
+                        }, false)
+                    })
+            })()
+        </script>
+    </div>
+    <div class="modal" id="modal-submit" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dane do wysyłki</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-dane">{DANE}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer-->
+    <div id="footer" class="bg-dark text-white">
+        <div class="container">
+            &copy; Rafał Cisek
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+[{
+        "id": "0",
+        "name": "Lewyyy Twix",
+        "image": "img/lewy.png",
+        "description": "Lepsza połowa Twixa!",
+        "price": "1.19"
+    },
+    {
+        "id": "1",
+        "name": "Koszulka z logo",
+        "image": "img/koszulka.jpeg",
+        "description": "Każdy chce ją mieć!",
+        "price": "39.99"
+    },
+    {
+        "id": "2",
+        "name": "Czapka z logo",
+        "image": "img/czapka.jpeg",
+        "description": "Stylowa i wygodna!",
+        "price": "29.99"
+    },
+    {
+        "id": "3",
+        "name": "Torba z logo",
+        "image": "img/torba.jpeg",
+        "description": "Świetna do przenoszenia rzeczy... tak myślę!",
+        "price": "23.99"
+    },
+    {
+        "id": "4",
+        "name": "Bluza z logo",
+        "image": "img/hoodie.jpeg",
+        "description": "Po prostu najlepsza!",
+        "price": "89.99"
+    }
+]
